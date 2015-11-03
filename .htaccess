@@ -1,0 +1,19 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteRule ^static/lib/(.*) /wp-includes/$1 [QSA,L]
+RewriteRule ^file/(.*) /wp-content/uploads/$1 [QSA,L]
+RewriteRule ^static/ext/(.*) /wp-content/plugins/$1 [QSA,L]
+RewriteRule ^static/(.*) /wp-content/themes/bridge/$1 [QSA,L]
+RewriteRule ^ajax /wp-admin/admin-ajax.php [QSA,L]
+RewriteRule ^wp-content/themes/bridge/screenshot\.png|readme\.html|license\.txt|wp-content/debug\.log|wp-includes/$ /nothing_404_404 [QSA,L]
+RewriteRule ^(((wp-content|wp-includes)/([A-Za-z0-9-_/]*))|(wp-admin/(?!network/)([A-Za-z0-9-_/]+)))(\.txt|/)$ /nothing_404_404 [QSA,L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
